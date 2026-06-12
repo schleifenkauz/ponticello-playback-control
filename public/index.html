@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <link rel="icon" href="icon.png" type="image/png">
+  <title>Ponticello Control</title>
+</head>
+
+<body>
+
+  <main id="app" class="app-container">
+
+    <header class="app-header">
+    <h2 class="app-title">Ponticello</h2>
+    <h2 class="app-title">Playback Control</h2>
+  </header>
+
+    <!-- Connection -->
+    <section id="connection-panel" class="panel panel--connection">
+      <button id="btn-connect" class="btn btn--primary" onclick="connect()">
+        Connect
+      </button>
+    </section>
+
+    <section id="waiting-message" class="hidden panel">
+      Waiting for Ponticello...
+    </section>
+
+    <!-- Controls -->
+    <section id="controls" class="panel panel--controls hidden">
+
+      <div id="transport-controls" class="button-row">
+        <button class="btn btn--icon hidden" id="btn-backward" onclick="backward()">
+          <span class="material-symbols-outlined">skip_previous</span>
+        </button>
+
+        <button id="btn-toggle" class="btn btn--icon" onclick="toggle_play()">
+          <span class="material-symbols-outlined" id="toggle-icon">play_arrow</span>
+        </button>
+
+        <button class="btn btn--icon hidden" id="btn-forward" onclick="forward()">
+          <span class="material-symbols-outlined">skip_next</span>
+        </button>
+      </div>
+
+      <div class="status-bar-container">
+        <div id="status-bar" class="status-bar hidden">
+
+          <div class="status-item">
+            <span class="label">Measure</span>
+            <span id="measure-number" class="value">?</span>
+          </div>
+
+          <div class="status-item">
+            <span class="label">Beat</span>
+            <span id="current-beat" class="value">?</span>
+            <span class="separator">/</span>
+            <span id="beats-per-bar" class="value">?</span>
+          </div>
+
+        </div>
+      </div>
+
+
+    </section>
+
+  </main>
+
+  <script src="client.js"></script>
+
+</body>
+
+</html>
