@@ -21,7 +21,7 @@ async function connect() {
     ws.onopen = () => {
         console.log("Connected!");
         btn_connect.style.display = "none";
-        waiting_message.classList.remove("hidden");   
+        waiting_message.classList.remove("hidden");
         toggle_icon.innerHTML = "play_arrow";
         send_command("i-am-controller");
     }
@@ -30,7 +30,7 @@ async function connect() {
         const data = JSON.parse(msg.data)
 
         console.log(data.type)
-        
+
         if (data.type === "ponticello-connected") {
             waiting_message.classList.add("hidden")
             controls.classList.remove("hidden")
@@ -41,7 +41,7 @@ async function connect() {
             controls.classList.add("hidden")
             position_info.classList.add("hidden")
         }
-        
+
         if (data.type === "started") {
             console.log("Started")
             position_info.classList.remove("hidden")
@@ -49,7 +49,7 @@ async function connect() {
             btn_backward.classList.remove("hidden")
             toggle_icon.innerHTML = "stop"
         }
-        
+
         if (data.type === "stopped") {
             console.log("Paused")
             toggle_icon.innerHTML = "play_arrow"
@@ -70,7 +70,7 @@ async function connect() {
 }
 
 async function send_command(cmd) {
-    const msg = JSON.stringify({type: cmd});
+    const msg = JSON.stringify({ type: cmd });
     ws.send(msg);
 }
 
@@ -88,12 +88,30 @@ async function toggle_play() {
 
 function flashBeatBackground() {
 
-  const app = document.getElementById("app");
+    const app = document.getElementById("app");
 
-  app.classList.remove("beat-flash");
+    app.classList.remove("beat-flash");
 
-  // restart animation
-  void app.offsetWidth;
+    // restart animation
+    void app.offsetWidth;
 
-  app.classList.add("beat-flash");
+    app.classList.add("beat-flash");
 }
+
+const volumeSlider = document.getElementById("volume-slider");
+
+const volumeValue = document.getElementById("volume-value");
+
+
+volumeSlider.addEventListener("input", () => {
+    const volume = volumeSlider.value;
+    volumeValue.textContent = volume + "%";
+
+    ws.send(
+        JSON.stringify({
+            type: "volume",
+            value: Number(volume)
+        })
+    );
+}
+);

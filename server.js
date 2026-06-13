@@ -12,7 +12,7 @@ const wss = new WebSocket.Server({ server });
 let ponticello;
 let controllers = new Set();
 
-const commands = ["forward", "backward", "toggle"]
+const commands = ["forward", "backward", "toggle", "volume"]
 const updates = ["beat", "started", "playing", "stopped"]
 
 let playing = false;
@@ -65,8 +65,8 @@ wss.on("connection", (ws) => {
             if (data.type === "stopped") {
                 playing = false;
             }
+            console.log(data); 
             controllers.forEach((ctrl) => {
-                console.log(data); 
                 ctrl.send(JSON.stringify(data));
             })
         }

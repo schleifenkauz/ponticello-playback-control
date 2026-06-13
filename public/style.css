@@ -163,3 +163,72 @@ body {
   margin-bottom: 24px;
   text-align: center;
 }
+
+/*Volume Slider*/
+
+.control-group {
+  margin-top: 24px;
+  width: 100%;
+}
+
+
+.control-label {
+  display: block;
+  margin-bottom: 10px;
+
+  font-size: 13px;
+  color: #9aa4b2;
+}
+
+
+/* Slider track */
+
+.volume-slider {
+  width: 100%;
+  height: 12px;
+
+  appearance: none;
+  -webkit-appearance: none;
+
+  background: #1a1f2c;
+  border-radius: 10px;
+
+  box-shadow:
+    inset 0 2px 5px rgba(0,0,0,0.5);
+
+}
+
+
+/* Thumb (the draggable part) */
+
+.volume-slider::-webkit-slider-thumb {
+
+  appearance: none;
+  -webkit-appearance: none;
+
+  width: 32px;
+  height: 32px;
+
+  border-radius: 50%;
+
+  background: #4c7dff;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 4px 10px rgba(0,0,0,0.5),
+    0 0 12px rgba(76,125,255,0.6);
+}
+
+
+.volume-slider::-moz-range-thumb {
+
+  width: 32px;
+  height: 32px;
+
+  border-radius: 50%;
+
+  background: #4c7dff;
+
+  border: none;
+}
